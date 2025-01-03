@@ -91,6 +91,13 @@ From this map we see that queried green space data spans further than each count
 
 Here we see that the county of Tulare has high percentage of green space, however this county makes the top 5 for worst air quality in four of the data sets. An internet search reveals that Tulare's extensive agricultural operations and industrial emissions largely contribute to air pollution. These effects are amplified by the topography and geographic location as Tulare is located in the San Joaquin Valley and surrounded by mountains, preventing the dispersion of pollutants. The amount of green space in this county is insufficient to counteract air pollution.
 
+Some threads to follow here:   
+We still have not shown that more green space correlates with better air quality. One way to do this may be to query green space data for ALL of California and this may be a massive file. 
+If such data can be obtained, we can then calculate percent green space and compare with number of good days, or total unhealthy days. That is perform a correlation analysis e.g. scatterplot or linear regression (since only two variables).   
+   
+Furthermore, due to our last point about Tulare county having high percent of green space but low air quality, what can we say about the importance of other variables affecting air quality, such as agricultural or industrial activity?
+
+
 
 
 
