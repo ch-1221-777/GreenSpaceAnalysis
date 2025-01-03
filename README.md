@@ -4,48 +4,51 @@
 
 ### Overview
 
-This project aims to explore the correlation between **green spaces** (e.g., parks, urban forests) and **air quality** over time. By analyzing air quality data, we assess whether an increase in green spaces can contribute to a decrease in air pollution, potentially improving quality of life in urban areas.
+This project analyzes the relationship between the amount of green space and air quality for  different counties in California. By analyzing air quality data and calculating the percentage of green space per county, we can determine if there is significant correlation. We obtain Annual Summary Data from the Environmental Protection Agency (EPA) online portal, downloading AQI by County files for the years 1990, 1995, …, 2020. The percent of green space for California counties is calculated using green space data queried from openstreetmap (OMS). This helps us assess whether greater amount of green space corresponds to better air quality.
 
 ### Key Findings:
+- Northern California counties have significantly better air quality than Southern California counties with much lesser number of Total Unhealthy Days per year.
+- The California counties with the worst air quality are the neighboring counties of Riverside, San Bernardino, Los Angeles, and Kern.
+- California air quality had a higher average number of Good Days in 2020 than in 1990, had the highest average number of Good Days in 1995.
+- California air quality had a higher average number of Total Unhealthy Days in 1990 than in 2020. 
+- Data indicates a small improvement in air quality in 2020 compared to 1990 in California.
 
 ## Table of Contents
 1. [Project Description](#project-description)
 2. [Data](#data)
 3. [Analysis](#analysis)
-4. [Results](#results)
-5. [Usage](#usage)
-6. [Installation Instructions](#installation-instructions)
-7. [Contributing](#contributing)
-8. [License](#license)
 
 ## Project Description
 
-This project analyzes the relationship between green spaces and air quality across different counties in California, focusing on how the amount of green space impacts the air quality, particularly in terms of **"Total Unhealthy Days"**, a sum of verious type of Unhealthy Days recorded in air quality data. The analysis spans data from 1990 to 2020 in 5-year intervals. We examining both temporal trends and spatial patterns to understand the overall impact of green spaces on air quality.
-
-
-
+To uncover any potential relationship between the amount of **green space** (e.g., parks, urban forests) and **air quality** in California counties, we first analyze temporal and spatial trends in air quality data. We calculate and plot state-wide averages over time as well as temporal averages per county. We then investigate the best and worst counties in terms of air quality per year that data is obtained. We also provide geographical context by mapping the number of **"Total Unhealthy Days"** per California county. This variable is introduced in this study and defined as the sum of all unhealthy day variables recorded in EPA’s AQI by County files. We also obtain green space data from OSM to calculate the percent of green space in certain California counties to better understand any correlation between amount of green space and air quality. Find details in the Analysis section.
 
 ### Goals:
-- Analyze air quality data at the county level for California from 1990 to 2020.
-- Explore spatial patterns of air quality in relation to green spaces.
-- Investigate trends in the number of unhealthy air quality days over time.
+- Investigate trends in air quality data at the county level in California from 1990 to 2020.
+- Explore relationship between amount of green space and air quality per county.
 - Produce insights into the benefits of green spaces in urban planning and environmental policy.
 
 ## Data
+The following data files can be found in the data folder:
+- **Air quality data**. EPA Annual Summary AQI by County csv files for the years 1990, 1995, …, 2020. Includes information on the number of healthy or unhealthy air quality days per year for each county.
+- **Geospatial data**. geojson files for California county boundary data.
 
-The primary data sources for this project are:
-- **Air quality data** for California counties (1990-2020) that includes daily air quality measurements.
-- **Geospatial data** for green spaces in California counties
+
 
 ## Analysis
-We first plot CA-wide air quality averages over the temporal span of our data.    
-<img src="images/CA_AirQuality_TimeSeriesPlot.png" alt="CAavergeAirQualityTimeSeries" width="600" height="300">    
-We focus on the number of Total Unhealthy Days for our analysis. In the time series plot we see a mininmum of 25 in the  average number of Total Unhealthy days in 2010 and 2015, while the maximum is about 50 Total Unhealthy Days from 1990, 1995 and 2000. In the most current data set for 2020, we see that unhealthy days have increased from the minimum in 2020 although have not increased past the maximum from earlier data sets.     
-In the following bar chart, we plot the average number of Total Unhealthy Days for the temporal data span of 1990 - 2020 per California county.    
+After filtering California air quality data, we plot a time series of the state-wide averages in the number of Good Days, Moderate Days and Total Unhealthy Days.   
+
+<img src="images/CA_AirQuality_TimeSeriesPlot.png" alt="CAavergeAirQualityTimeSeries" width="600" height="300">  
+
+This plot reveals a small improvement in air quality over the years since the California air quality has a higher average number of Good Days and a lower average number of Total Unhealthy Days in 2020 than in 1990. However, the 2020 average number of Moderate Days has increased significantly wince 1990. It would be interesting to investigate if the EPA’s criteria for what constitutes a good, moderate, or unhealthy day has changed significantly over the years since 1990.    
+
+Next we plot the temporal average number of Total Unhealthy days per county for the time span of 1990 – 2020.    
 
 <img src="images/AvgUnhealthyDays_perCounty.png" alt="UnhealthyperCounty_barplot" width="600" height="400"> 
 
-Next, we identify the California counties with the best and worst air quality in each data set.    
+Here we observe that Kern, Los Angeles, Riverside and San Bernardino have the historic highest number of Total Unhealthy days in air quality, with Tulare and Fresno close behind.    
+
+
+In what follows we identify the best and worst air quality counties in each dataset. That is, we select the top 5 counties with the highest number of  **Total Unhealthy Days** and the top 5 counties with the highest number of **Good Days** for each year of air quality data.
     
 <img src="images/CA_AirQuality_BestWorstCounties_1990.png" alt="BestWorstCounties1990" width="700" height="350">
    
@@ -59,13 +62,11 @@ Next, we identify the California counties with the best and worst air quality in
    
 <img src="images/CA_AirQuality_BestWorstCounties_2020.png" alt="BestWorstCounties2020" width="700" height="350">   
 
-From these bar plots we identify the worst counties in terms air quality to be Southern California counties with Riverside, San Bernardino, Los Angeles and Kern all which are adjacent counties appearing in every data set. San Diego county makes it to this list only in 1990 ... has this county since adopted green initiaves such as preserving protected areas or prioritizing green urban planning? What is the percentage of green space in San Diego in 1990 vs 2020?    
+Here we discover very little variation in the counties that make it to the top 5 by Total Unhealthy Days. Making every list are the neighboring  Southern California counties of Kern, Los Angeles, Riverside and San Bernardino. With Tulare and Fresno also making regular appearances. San Diego county makes the list of top 5 by Total Unhealthy Days only in 1990. Is it possible that San Diego county has since adopted green-space-promoting initiatives? What was the percent of green space in 1990?    
+On the other hand, we also discover that most counties making the top 5 by Good Days lists are located in Northern California with Lake county making the top 5 in each data set. We also notice more variation in the counties making the top 5 by Good Days lists. Some central counties making some top 5 lists are Santa Cruz and San Benito.   
 
-On the other hand, the best counties in terms of air quality are mainly Northern California counties with Lake making the list for every data set. What is the percentage of green space in Lake county and what are this county's initiatives in terms of green spaces?   
-Some more central counties making the top 5 are Santa Cruz and San Benito.   
-
-Below map the air quality data in terms of Total Unhealthy Days per county for the years 1990, 2000, 2010, 2020.    
-
+In the next figures we map the number of **Total Unhealthy Days** per year for each California county. This illustrates the variation in air quality across different counties and provides geographical context. We produce maps for the year 1990, 2000, 2010, and 2020.
+  
 #### 1990
 <img src="images/CA_AirQualityMap_1990.png" alt="AQMap1990" width="600" height="400">   
 
@@ -78,12 +79,17 @@ Below map the air quality data in terms of Total Unhealthy Days per county for t
 #### 2020
 <img src="images/CA_AirQualityMap_2020.png" alt="AQMap2020" width="600" height="400">   
 
-Focusing on 2020 data, we also map green spaces for the worst five air quality counties as well as the percentage of green space.    
+Next, we’d like to obtain information about the percent of green space in each county. Although this may sound simple, the process requires downloading large amounts of geographical data. Thus we first focus on the 2020 top 5 counties by Total Unhealthy Days. We query for green space data in terms of parks, forests, national parks, protected areas, etc. from OSM for the counties of San Bernardino, Riverside, Los Angeles, Tulare and Kern.    
+We mention that data from OSM is current; historical green space data e.g. from 1990 may be difficult to obtain and compare with current data.   
 
-<img src="images/greenSpacePcMap_WorstCounties_2020.png" alt="greenSpaceMap2020" width="600" height="500">   
+Once green space geographical data is obtained, we map and layer with the California county boundaries. 
+<img src="images/greenSpacePcMap_WorstCounties_2020.png" alt="greenSpaceMap2020" width="600" height="500">  
+
+From this map we see that queried green space data spans further than each county’s boundary, thus we merge green space data and county boundary data by intersection. We also notice that the county of Kern has some visible green spaces north of Bakersfield that were not retrieved in our OSM query. Similarly, the most western part of Riverside county seems to have green space missed by our query. For now we proceed as is, and we calculate the percent of green space by dividing the amount of green space area in each county by the total county area. 
+
 <img src="images/2020TopWorstCounties_greenSpacePc.png" alt="greenSpacePcMap2020" width="600" height="400">   
 
-From the green space percentage map we see that Tulare has high percentage of green space, however this county makes the list for worst air quality in four of the data sets. What are potential causes of bad air quality in Tulare county e.g. does it have high industrial acivity?
+Here we see that the county of Tulare has high percentage of green space, however this county makes the top 5 for worst air quality in four of the data sets. An internet search reveals that Tulare's extensive agricultural operations and industrial emissions largely contribute to air pollution. These effects are amplified by the topography and geographic location as Tulare is located in the San Joaquin Valley and surrounded by mountains, preventing the dispersion of pollutants. The amount of green space in this county is insufficient to counteract air pollution.
 
 
 
